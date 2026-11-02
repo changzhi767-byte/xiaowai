@@ -51,11 +51,29 @@ jobs:
                   text=text.replace('const versionHistory = [',"const versionHistory = [\n        { v: '20261030-1510', log: '公开演示默认填入可编辑账号密码，不自动登录或勾选协议。' },")
               p.write_text(text)
           PYCODE
+      - name: Build independent complete PC demo
+        run: |
+          python3 - <<'PCBUILD'
+          import hashlib, os, pathlib, shutil, subprocess, zipfile
+          archive=pathlib.Path('banxue-pc/source-20261102-01.zip')
+          assert hashlib.sha256(archive.read_bytes()).hexdigest()=='b8c3d1dc86f65177cdbb1160b731eeecdcaff0438494ffac76e72b0909e465ef', 'PC source checksum mismatch'
+          source=pathlib.Path(os.environ['RUNNER_TEMP'])/'pc-complete-source'
+          source.mkdir(parents=True,exist_ok=True)
+          with zipfile.ZipFile(archive) as z:
+              for entry in z.infolist():
+                  p=pathlib.PurePosixPath(entry.filename)
+                  assert not p.is_absolute() and '..' not in p.parts, 'Invalid source archive path'
+              z.extractall(source)
+          (source/'verification').mkdir(exist_ok=True)
+          subprocess.run(['node',str(source/'build.mjs')],check=True)
+          subprocess.run(['node',str(source/'verify.mjs')],check=True)
+          shutil.copytree(source/'dist/banxue-pc','banxue-pc',dirs_exist_ok=True)
+          PCBUILD
       - uses: actions/configure-pages@v5
       - name: Assemble existing and new public previews
         run: |
           mkdir -p "$RUNNER_TEMP/pages"
-          rsync -a --exclude='.git' --exclude='.github' --exclude='coach-runtime.part*' --exclude='runtime-sha256.txt' --exclude='coach-login-prefill.js' ./ "$RUNNER_TEMP/pages/"
+          rsync -a --exclude='.git' --exclude='.github' --exclude='coach-runtime.part*' --exclude='runtime-sha256.txt' --exclude='coach-login-prefill.js' --exclude='/banxue-pc/source-*.zip' ./ "$RUNNER_TEMP/pages/"
       - uses: actions/upload-pages-artifact@v4
         with:
           path: ${{ runner.temp }}/pages
