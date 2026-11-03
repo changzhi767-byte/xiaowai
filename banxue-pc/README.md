@@ -1,6 +1,6 @@
 # 秒懂 AI 伴学 · PC 完整演示
 
-- 当前版本：`20261103-05`（非错题页面恢复CloudBase原版，五页保留功能并复用原版组件）。
+- 当前版本：`20261103-06`（到店按测试环境恢复签到/签退及确认弹层）。
 - 用户目标：在 `changzhi767-byte/xiaowai` 新建独立 `banxue-pc/` 文件夹，补全用户指定 Demo。
 - 入口：`dist/banxue-pc/app/index.html#/learning`，或目录根入口。
 - 发布状态：GitHub Pages 已发布成功；入口 https://changzhi767-byte.github.io/xiaowai/banxue-pc/ 。仓库独立目录 https://github.com/changzhi767-byte/xiaowai/tree/main/banxue-pc 。
@@ -134,3 +134,17 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 本地28路由/20原样模块/错题保真校验通过；8主模块导航、五页控件、筛选→表格审核、搜索方向键/Enter/Esc/清空、原试卷上传0个approved实例/2个原上传器、错题仍60px、共享作业分支0个approved通过；960px作业和到店无横溢。下载中心未赋src的隐藏PDF预览img不算坏资源。原版业务源码完整保留，本轮未重复执行全部历史第三方/打印机流程。合同REFERENCE_RESTORE_CONTRACT.md，截图和验收JSON见verification/reference-*05。
 
 构建链source→trial→uploader→paste→wrong→visual03→cards04→reference-20261103-05.zip，运行build/verify。GitHub既有目录和workflow发布，最终回执记录verification/reference-release05.json；归档中README为发布前源码说明。L-139及全局文档同步。
+
+发布完成：提交2897acc7b5ba61b734944bac4592cc0b4c49c7a7，Actions41608102899 completed/success。线上meta20261103-05，10个主模块导航/资源无可见坏图或console错误；五页原版控件、原版表格与四个非错题上传表单已验收（approved=0），两条错题新增入口仍60px/approved=1。运行归档重建28路由通过；仓库仅workflow、目标README和新reference ZIP变化。截图/JSON见reference-*-public05及reference-public05.json。增量SHA256=5684a75ea9fd404ba05faa8fbb3699ab5beb1da907f43c882a8dfd584f0344d6。
+
+## 20261103-06 · 到店按实际测试环境重新对齐
+
+用户再次指出到店错误。真实页面为默认签到列表，顶部216×40签到/签退胶囊和221×40搜索；此前三页签/日报筛选/统一签到弹窗并非真实交互，已去除。签到页展示完整本机名册，卡片签到/已签到/再次签到；签退页展示今日到店记录含已离店，卡片一个动态日报按钮+签退/再次签到。105px卡片、固定分页、独立滚动和384×316签到确认弹层按真实DOM/CSS读值还原；图标只归档公共data SVG，不复制实际学员/电话。
+
+实际签退tab当前空，日报/签退分支通过页面已加载公开pages-sign-in-components-sign-in-main.CvmBDUQM.js核验：暂无学习数据、生成日报、生成中...、打印日报、打印中...为单按钮状态；签退直接执行，不增加确认或按日报阶段拦截。此口径覆盖历史旧六态按钮矩阵，六个日报业务阶段保留。签到确认才写本机，取消/Esc/外点不修改；仍保留原出勤key，已有本机记录不清空，新浏览器不伪造到店记录。打印沿用本机演示PDF与模拟完成，不提交真实打印任务、生产签到或家长通知。
+
+实现独立runtime/visit-page.js/css，样式只在store生效；27个其它模块与05字节一致（verification/visit-isolation06.json），原共享completion/business-cards/错题/上传未改。28路由/20原样模块校验通过。签到确认/取消→已签到禁用→直接签退→再次签到、搜索空/清空、生成中禁用和签退可用、960px无横溢通过。默认Tab216px、卡105px、弹层384×316/头像56/按钮44、分页底720已量测；截图及JSON见verification/visit-*.
+
+当前契约VISIT_STATE_CONTRACT.md；来源CSS和几何仅含公共样式，不含真实学员数据。部署在原归档链reference05后追加visit-20261103-06.zip，执行build/verify；发布结果见verification/visit-release06.json。L-140及全局交接同步。
+
+验收边界补充：日报生成已实测pending→generating→ready；点击打印时当前验收浏览器安全策略拦截blob PDF预览导航，未重试或换通道绕过，因此不声称本轮已验证PDF预览或实体打印。详见visit-local06.json。
