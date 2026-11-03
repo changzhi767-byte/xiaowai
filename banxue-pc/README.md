@@ -1,6 +1,6 @@
 # 秒懂 AI 伴学 · PC 完整演示
 
-- 当前版本：`20261103-03`（三处页面统一，修正右键菜单SVG图标）。
+- 当前版本：`20261103-04`（恢复作业、中英作文、诊断和到店业务卡片）。
 - 用户目标：在 `changzhi767-byte/xiaowai` 新建独立 `banxue-pc/` 文件夹，补全用户指定 Demo。
 - 入口：`dist/banxue-pc/app/index.html#/learning`，或目录根入口。
 - 发布状态：GitHub Pages 已发布成功；入口 https://changzhi767-byte.github.io/xiaowai/banxue-pc/ 。仓库独立目录 https://github.com/changzhi767-byte/xiaowai/tree/main/banxue-pc 。
@@ -108,3 +108,15 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 ## 20261103-03 · 最终截图复核修正菜单图标
 
 02线上候选截图发现右键菜单伪元素默认mask规则优先级更高，合并/拆开/删除画成实色色块。提高专用SVG规则优先级后，三项mask-image均为真实环境SVG且截图正确，禁用矩阵不变；28路由通过。未更改02已验收的抽屉/字段事务/标记/裁图/PDF及上传。最新完整视觉增量visual-20261103-03.zip替代visual-20261103-02.zip，不继续叠加；重建顺序source→trial→uploader→paste→wrong→visual03。源码及本README由既有工作流部署，最终结果见仓库Actions；02历史记录保留。
+
+最终发布03：提交16497ab6dfefafc6c2bfdee6a2f646335e4a9924，Actions41572809680 completed/success。visual03完整包43660字节，SHA256=a0722b8d0f68a0455485c27e36c987902793b9b9e053380dce95b346102238b4，替代visual02；workflow副本delivery/publish-pages-visual03.yml。线上meta03、三项真实SVG mask及禁用状态正确，实际截图已复核，坏图0、console无error/warn，原66个非workflow文件SHA一致；02其它验收保持。截图/数据verification/editor-public-20261103-03.jpg、visual-public-20261103-03.json及visual-release-20261103-03.json。仓库README已同步03版本/重建顺序/注意事项，精确发布记录在本地交接及验证JSON。
+
+## 20261103-04 · 恢复五页业务卡片
+
+用户指出作业批改、中英文作文、学习力诊断、到店卡片错误。根因是最初补5个占位页时套用统一cp-card模板。本轮按真实测试环境DOM/CSS逐页读取，恢复作业143px、作文186px（52px标题）、诊断143px、到店105px结构，统一32px头像、角标和40px动作区；到店保留紧凑胶囊按钮。真实公开UI图标落盘card-assets，不复制真实学员或任务。详情/审核/PDF、六态禁用矩阵和本机记录沿用；诊断继续测评直接进入已存承载位，不重新发起。
+
+实现为runtime/business-cards.js/css及completion集成；CSS仅#cpResults .bc-*，不修改共享外框。列表工具栏回到顶栏，默认50条/页；移除本轮通用模板附加的排序/清筛按钮，其余筛选、视图、签到入口保留。逐态合同见CARD_RESTORE_CONTRACT.md。
+
+构建/28路由校验通过；与03版比较仅homework/chinese/english/diagnosis/store五个模块变更，其余23模块字节一致，原上传和错题编辑器版本固定03。浏览器验证五页高度/头像/动作区、无坏图，作业审核/材料、作文异常、诊断暂存继续、到店签退取消及六态禁用；960px作文/到店无横向溢出，console无错误。证据verification/cards-*.jpg及cards-local04.json。动态生成中/打印中会按原截止时间结算，不为截图冻结业务。
+
+最新重建顺序source→trial→uploader→paste→wrong→visual03→cards-20261103-04.zip，执行build/verify；发布由既有GitHub Actions完成，精确运行结果记录于verification/cards-release04.json。L-138及全局交接文档同步。
