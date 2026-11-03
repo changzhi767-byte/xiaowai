@@ -1,6 +1,6 @@
 # 秒懂 AI 伴学 · PC 完整演示
 
-- 当前版本：`20261103-06`（到店按测试环境恢复签到/签退及确认弹层）。
+- 当前版本：`20261103-07`（错题数块无描边，六任务路由统一新版上传）。
 - 用户目标：在 `changzhi767-byte/xiaowai` 新建独立 `banxue-pc/` 文件夹，补全用户指定 Demo。
 - 入口：`dist/banxue-pc/app/index.html#/learning`，或目录根入口。
 - 发布状态：GitHub Pages 已发布成功；入口 https://changzhi767-byte.github.io/xiaowai/banxue-pc/ 。仓库独立目录 https://github.com/changzhi767-byte/xiaowai/tree/main/banxue-pc 。
@@ -148,3 +148,13 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 当前契约VISIT_STATE_CONTRACT.md；来源CSS和几何仅含公共样式，不含真实学员数据。部署在原归档链reference05后追加visit-20261103-06.zip，执行build/verify；发布结果见verification/visit-release06.json。L-140及全局交接同步。
 
 验收边界补充：日报生成已实测pending→generating→ready；点击打印时当前验收浏览器安全策略拦截blob PDF预览导航，未重试或换通道绕过，因此不声称本轮已验证PDF预览或实体打印。详见visit-local06.json。
+
+发布完成：提交656b53e915303f74e8af6aa72ca2af8251fe3061，Actions41610819527 completed/success。线上meta20261103-06、默认签到/签退两Tab、216px页签/221px搜索、105px卡片、384×316确认/56px头像/44px按钮、底部分页及取消恢复通过，坏图0/console错误0。27其它模块字节一致，仓库差异仅workflow、目标README、新visit ZIP；回执visit-release06.json，截图visit-*-public06.jpg。
+
+## 20261103-07 · 去除错题数块描边，统一新版图片上传
+
+按用户截图移除作业错题数块处理态border及inset box-shadow；保留背景色和卡片外框，普通/处理中computed border=0、shadow=none。六条任务路由全部安装当前错题整理同一image-uploader.js/css，不再仅wrong分支启用；原image-uploader运行文件不变，恢复已验收500×60/104选择/整条居中粘贴/8张/140缩略图/16间距口径。试卷主卷/答题卡各自独立，原PDF类型选项和所有业务表单字段保留。当前明确指令覆盖05/06非错题使用旧上传器的范围。
+
+本地28路由/16原样模块保真通过；6路由7图片入口均500×60，待粘贴隐藏选择按钮，Esc退出恢复；PDF选项为试卷2、作业/中英各1、错题0、共享作业1。真实选择paper1.png成功，22项既有上传fixture全通过；证据unify-local07.json及unify-*-local07.jpg。错题/到店运行脚本未改，无业务存储迁移。状态契约UPLOAD_UNIFY_CONTRACT.md，L-141及全局文档同步。
+
+增量unify-20261103-07.zip在visit06后叠加重建，执行build/verify；结果见verification/unify-release07.json。源码归档README为发布前快照，线上回执以该JSON及本地最新记录为准。
