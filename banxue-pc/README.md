@@ -1,6 +1,6 @@
 # 秒懂 AI 伴学 · PC 完整演示
 
-- 当前版本：`20261103-04`（恢复作业、中英作文、诊断和到店业务卡片）。
+- 当前版本：`20261103-05`（非错题页面恢复CloudBase原版，五页保留功能并复用原版组件）。
 - 用户目标：在 `changzhi767-byte/xiaowai` 新建独立 `banxue-pc/` 文件夹，补全用户指定 Demo。
 - 入口：`dist/banxue-pc/app/index.html#/learning`，或目录根入口。
 - 发布状态：GitHub Pages 已发布成功；入口 https://changzhi767-byte.github.io/xiaowai/banxue-pc/ 。仓库独立目录 https://github.com/changzhi767-byte/xiaowai/tree/main/banxue-pc 。
@@ -120,3 +120,17 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 构建/28路由校验通过；与03版比较仅homework/chinese/english/diagnosis/store五个模块变更，其余23模块字节一致，原上传和错题编辑器版本固定03。浏览器验证五页高度/头像/动作区、无坏图，作业审核/材料、作文异常、诊断暂存继续、到店签退取消及六态禁用；960px作文/到店无横向溢出，console无错误。证据verification/cards-*.jpg及cards-local04.json。动态生成中/打印中会按原截止时间结算，不为截图冻结业务。
 
 最新重建顺序source→trial→uploader→paste→wrong→visual03→cards-20261103-04.zip，执行build/verify；发布由既有GitHub Actions完成，精确运行结果记录于verification/cards-release04.json。L-138及全局交接文档同步。
+
+发布完成：提交4b5847cb1d0797172b6a0c1fc81fb5f1ee4be3b4，Actions41605630263 completed/success。线上meta20261103-04，五页高度143/186/186/143/105px、32px头像、零坏图，console无错误；截图与JSON见verification/cards-*-public04。七段归档重建和28路由通过，其余23模块字节一致；仓库差异仅workflow、目标README、新cards ZIP，旧项目文件保留。
+
+## 20261103-05 · 非错题页面按指定CloudBase Demo还原
+
+用户指定参考入口实际manifest为20261030-1344，28个模块SHA与source快照一致，外框index/app/runtime/navigation/UI kit均一致；证据reference-audit05.json。用户明确五个占位列表保留功能，按原版已有组件还原。因此已有页面直接保留/恢复原源码，五页采用原版组件组合，不宣称占位页存在完整可1:1复制的原页面。
+
+- 20个原实际页面与参考模块逐字节相同，包含试卷列表/审核、新增学员、学员/学情/错题本/下载，以及非错题新增表单和选学员页；去掉4个非错题新增页此前注入的上传器，恢复原图/PDF、限制、预览裁剪及字段交互。
+- student/new-task为共享页面，保留错题编辑集成，但只有kind=wrong才安装500×60上传器；非错题分支保持原上传器。专用错题列表/新增模块及wrong-flow/editor/uploader运行源码与04完全一致；体验版标签保留。
+- 五页使用原版BanxueSelect、BanxueDataTable/createViewSwitch、BanxueForm.field、BanxuePagination，搜索复用exam的ex-field/历史建议交互，卡片使用ex-card/bx-list-surface并仅保留业务专属高度/字段。对话框采用原bx-dialog规则。未改业务存储key、审核/PDF、诊断三态、日报六态。
+
+本地28路由/20原样模块/错题保真校验通过；8主模块导航、五页控件、筛选→表格审核、搜索方向键/Enter/Esc/清空、原试卷上传0个approved实例/2个原上传器、错题仍60px、共享作业分支0个approved通过；960px作业和到店无横溢。下载中心未赋src的隐藏PDF预览img不算坏资源。原版业务源码完整保留，本轮未重复执行全部历史第三方/打印机流程。合同REFERENCE_RESTORE_CONTRACT.md，截图和验收JSON见verification/reference-*05。
+
+构建链source→trial→uploader→paste→wrong→visual03→cards04→reference-20261103-05.zip，运行build/verify。GitHub既有目录和workflow发布，最终回执记录verification/reference-release05.json；归档中README为发布前源码说明。L-139及全局文档同步。
