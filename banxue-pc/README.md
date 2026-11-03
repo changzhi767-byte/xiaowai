@@ -1,6 +1,6 @@
 # 秒懂 AI 伴学 · PC 完整演示
 
-- 当前版本：`20261103-02`（详情抽屉、标记及编辑页视觉与交互对齐）。
+- 当前版本：`20261103-03`（三处页面统一，修正右键菜单SVG图标）。
 - 用户目标：在 `changzhi767-byte/xiaowai` 新建独立 `banxue-pc/` 文件夹，补全用户指定 Demo。
 - 入口：`dist/banxue-pc/app/index.html#/learning`，或目录根入口。
 - 发布状态：GitHub Pages 已发布成功；入口 https://changzhi767-byte.github.io/xiaowai/banxue-pc/ 。仓库独立目录 https://github.com/changzhi767-byte/xiaowai/tree/main/banxue-pc 。
@@ -104,3 +104,7 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 两个现有公开题图样例经人工校对补B/13根和相应演示解析，只按示例题图名称启用；用户新上传不预填答案，不调用真实OCR或答案服务。知识点与学员仍为原演示数据。LESSONS追加L-137。发布待补；最新源码在source→trial→uploader→paste→wrong之后覆盖visual-20261103-02.zip。
 
 发布完成：提交dbdc255e8f31aad66a159ddcc71b21ba9d8025ed，Actions41572146532 completed/success。visual增量包41832字节，SHA256=dbc664d8a4c22f5f7ab90af76c7ddb4469a0f1939373b9cbd33f3a3c77cd60e2，workflow副本delivery/publish-pages-visual.yml。线上meta02、抽屉640/头86/尾56.5/卡608、报告340×228默认tail、编辑左160.5/右栏隐藏/选中2px蓝边/笔迹资源正常；缓存返回重入仍workbench/hidden，坏图0、console error/warn为空。原66个非workflow文件SHA一致。新版含示例解析PDF实际下载197424字节、2页、%PDF-1.4。截图/JSON见verification/*-public-20261103-02.*；上传→下一步→编辑/标记及960px证据为*-local-20261103-02.jpg和状态矩阵记录。原始归档为发布前源码快照，最终状态以本README及Actions为准。
+
+## 20261103-03 · 最终截图复核修正菜单图标
+
+02线上候选截图发现右键菜单伪元素默认mask规则优先级更高，合并/拆开/删除画成实色色块。提高专用SVG规则优先级后，三项mask-image均为真实环境SVG且截图正确，禁用矩阵不变；28路由通过。未更改02已验收的抽屉/字段事务/标记/裁图/PDF及上传。最新完整视觉增量visual-20261103-03.zip替代visual-20261103-02.zip，不继续叠加；重建顺序source→trial→uploader→paste→wrong→visual03。源码及本README由既有工作流部署，最终结果见仓库Actions；02历史记录保留。
