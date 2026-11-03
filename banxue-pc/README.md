@@ -102,3 +102,5 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 已浏览器验证：抽屉实际几何、单列/展开、红笔资产和裁图回显、真实paper1.png选择→下一步→前处理→标记；年级学科修改后返回回滚、确认后刷新恢复高二/物理；批量合并/拆开禁用矩阵、删除/撤销、清空取消/确认/撤销；960px编辑页scrollWidth=960，左导航保留、右栏隐藏、纸张未溢出。原几何手势实现保持，本轮未重跑全部历史鼠标拖动/缩放边界组合。28路由/16原模块保真通过；4任务模块仅上传适配，2个带错题编辑器的模块与错题列表允许显式集成差异。
 
 两个现有公开题图样例经人工校对补B/13根和相应演示解析，只按示例题图名称启用；用户新上传不预填答案，不调用真实OCR或答案服务。知识点与学员仍为原演示数据。LESSONS追加L-137。发布待补；最新源码在source→trial→uploader→paste→wrong之后覆盖visual-20261103-02.zip。
+
+发布完成：提交dbdc255e8f31aad66a159ddcc71b21ba9d8025ed，Actions41572146532 completed/success。visual增量包41832字节，SHA256=dbc664d8a4c22f5f7ab90af76c7ddb4469a0f1939373b9cbd33f3a3c77cd60e2，workflow副本delivery/publish-pages-visual.yml。线上meta02、抽屉640/头86/尾56.5/卡608、报告340×228默认tail、编辑左160.5/右栏隐藏/选中2px蓝边/笔迹资源正常；缓存返回重入仍workbench/hidden，坏图0、console error/warn为空。原66个非workflow文件SHA一致。新版含示例解析PDF实际下载197424字节、2页、%PDF-1.4。截图/JSON见verification/*-public-20261103-02.*；上传→下一步→编辑/标记及960px证据为*-local-20261103-02.jpg和状态矩阵记录。原始归档为发布前源码快照，最终状态以本README及Actions为准。
