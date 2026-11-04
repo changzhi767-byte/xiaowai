@@ -128,6 +128,13 @@ jobs:
                   p=pathlib.PurePosixPath(entry.filename)
                   assert not p.is_absolute() and '..' not in p.parts
               z.extractall(source)
+          patch=pathlib.Path('banxue-pc/layout-20261104-01.zip')
+          assert hashlib.sha256(patch.read_bytes()).hexdigest()=='0536b8b2b78cc45ffaa49a7466197a05c4b8a5631e3ec73d2864f7d3a7b11e62', 'Layout checksum mismatch'
+          with zipfile.ZipFile(patch) as z:
+              for entry in z.infolist():
+                  p=pathlib.PurePosixPath(entry.filename)
+                  assert not p.is_absolute() and '..' not in p.parts
+              z.extractall(source)
           subprocess.run(['node',str(source/'build.mjs')],check=True)
           subprocess.run(['node',str(source/'verify.mjs')],check=True)
           shutil.copytree(source/'dist/banxue-pc','banxue-pc',dirs_exist_ok=True)
@@ -136,7 +143,7 @@ jobs:
       - name: Assemble existing and new public previews
         run: |
           mkdir -p "$RUNNER_TEMP/pages"
-          rsync -a --exclude='.git' --exclude='.github' --exclude='coach-runtime.part*' --exclude='runtime-sha256.txt' --exclude='coach-login-prefill.js' --exclude='/banxue-pc/source-*.zip' --exclude='/banxue-pc/trial-*.zip' --exclude='/banxue-pc/uploader-*.zip' --exclude='/banxue-pc/paste-*.zip' --exclude='/banxue-pc/wrong-*.zip' --exclude='/banxue-pc/visual-*.zip' --exclude='/banxue-pc/cards-*.zip' --exclude='/banxue-pc/reference-*.zip' --exclude='/banxue-pc/visit-*.zip' --exclude='/banxue-pc/unify-*.zip' ./ "$RUNNER_TEMP/pages/"
+          rsync -a --exclude='.git' --exclude='.github' --exclude='coach-runtime.part*' --exclude='runtime-sha256.txt' --exclude='coach-login-prefill.js' --exclude='/banxue-pc/source-*.zip' --exclude='/banxue-pc/trial-*.zip' --exclude='/banxue-pc/uploader-*.zip' --exclude='/banxue-pc/paste-*.zip' --exclude='/banxue-pc/wrong-*.zip' --exclude='/banxue-pc/visual-*.zip' --exclude='/banxue-pc/cards-*.zip' --exclude='/banxue-pc/reference-*.zip' --exclude='/banxue-pc/visit-*.zip' --exclude='/banxue-pc/unify-*.zip' --exclude='/banxue-pc/layout-*.zip' ./ "$RUNNER_TEMP/pages/"
       - uses: actions/upload-pages-artifact@v4
         with:
           path: ${{ runner.temp }}/pages
