@@ -1,6 +1,6 @@
 # 秒懂 AI 伴学 · PC 完整演示
 
-- 当前版本：`20261103-07`（错题数块无描边，六任务路由统一新版上传）。
+- 当前版本：`20261104-01`（错题卡片间距/hover和主列表底部分页纠正）。
 - 用户目标：在 `changzhi767-byte/xiaowai` 新建独立 `banxue-pc/` 文件夹，补全用户指定 Demo。
 - 入口：`dist/banxue-pc/app/index.html#/learning`，或目录根入口。
 - 发布状态：GitHub Pages 已发布成功；入口 https://changzhi767-byte.github.io/xiaowai/banxue-pc/ 。仓库独立目录 https://github.com/changzhi767-byte/xiaowai/tree/main/banxue-pc 。
@@ -158,3 +158,13 @@ runtime/image-uploader.js/css为原生上传器适配层，复用此前coach-mis
 本地28路由/16原样模块保真通过；6路由7图片入口均500×60，待粘贴隐藏选择按钮，Esc退出恢复；PDF选项为试卷2、作业/中英各1、错题0、共享作业1。真实选择paper1.png成功，22项既有上传fixture全通过；证据unify-local07.json及unify-*-local07.jpg。错题/到店运行脚本未改，无业务存储迁移。状态契约UPLOAD_UNIFY_CONTRACT.md，L-141及全局文档同步。
 
 增量unify-20261103-07.zip在visit06后叠加重建，执行build/verify；结果见verification/unify-release07.json。源码归档README为发布前快照，线上回执以该JSON及本地最新记录为准。
+
+2026-11-04续接发布完成：提交dedf9c1a2609ebb8a2e88b3b239b08b6a1047e50，Actions41760228756 completed/success。线上meta20261103-07；错题数普通/处理中均border0/shadow none；6路由7图片入口均500×60，原PDF选项保留；共享作业粘贴隐藏选择/Esc恢复通过，console错误0。截图/JSON为unify-*-public07及unify-public07.json。仓库仅workflow、目标README、新unify ZIP变化；回执unify-release07.json。
+
+## 20261104-01 · 错题卡片与分页容器修正
+
+按实际测试DOM/CSS修正：错题间距10px、卡138px，hover不位移、阴影0 8px 24px/14%，处理态保持轻阴影。主列表采用独立滚动内容及独立底部分页；下载/到店沿用既有滚动容器，统一分页内边距8/16/12。页内知识点/错题/任务表分页保留所属面板，不强行抽到页面底部。
+
+仅新增runtime/layout-shell.js/css并在入口加载，28个业务模块与07字节一致。主列表10页、选择学员5页均footer bottom720/inner708；短/空/表格及滚动后位置通过，960px无横溢；错题实际hover=true、transform none、gap10/height138通过。证据pager-after08/layout-wrong08/layout-short-table08/layout-select-small08 JSON及截图。契约LAYOUT_STATE_CONTRACT.md；上传与既有业务流未改。
+
+归档链unify07后叠加layout-20261104-01.zip并执行build/verify；发布回执layout-release08.json。
